@@ -1,0 +1,18 @@
+# Bot and automation (not part of the survey)
+automation_bot/
+
+# Backups folder
+backups/
+
+# Internal working notes
+Claude outputs/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+
+# Node (if any stray packages end up here)
+node_modules/
