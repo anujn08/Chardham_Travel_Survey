@@ -296,47 +296,15 @@
         </div>
 
         <h3>A1.1: Trip Planning & Booking</h3>
-        <label>Where did you get most of your travel information for this trip?
-          <span class="field-helper">Think about how you found out which route to take, how much travel would cost, or when transport was available. Choose the one source you relied on most.</span>
-          <select name="transportInfoSource" required>
-            <option value="">--Choose your main source--</option>
-            <option value="Tour operator / Travel agent">A travel agent or tour organiser</option>
-            <option value="Friends / Family">Advice from family or friends</option>
-            <option value="Online search">Searching online, for example on Google</option>
-            <option value="State tourism website">The official state tourism website</option>
-            <option value="Religious organisation">A religious group, temple, or ashram</option>
-            <option value="Social media / YouTube">Posts or videos on YouTube, Facebook, Instagram, or WhatsApp</option>
-            <option value="Previous personal experience">What I already knew from an earlier visit</option>
-            <option value="Prefer not to say">I prefer not to answer</option>
-          </select>
-        </label>
-
-        <label>How was most of your transport arranged for this trip?
-          <span class="field-helper">Choose the option covering most of your travel (or your current plan). If transport was included in a tour/yatra package, choose the package option, even if you or your family booked it online. Otherwise, choose how it was arranged below.</span>
-          <select name="transportBookingMethod" required>
-            <option value="">--Choose the main arrangement--</option>
-            <option value="Through a tour/yatra package">Transport was included in a tour/yatra package</option>
-            <option value="Through religious organisation">A religious organisation arranged group transport, without a tour package</option>
-            <option value="Separate transport booking in advance">I or my family/friends booked transport separately before travel, without a package or religious group arrangement</option>
-            <option value="Transport arranged on arrival">I or my family/friends found transport at the stop/station when needed, without advance booking</option>
-            <option value="Own vehicle without transport booking">We used our own vehicle; no transport booking was needed</option>
-            <option value="Not yet decided">We have not yet decided how to arrange transport</option>
-            <option>Other</option>
-          </select>
-        </label>
-
-        <label>Main transport decision maker:
-          <span class="field-helper">Who mainly decided which transport modes to use?</span>
-          <select name="transportDecisionMaker" required>
-            <option value="">--Select--</option>
-            <option>Respondent themselves</option>
-            <option>Tour operator / Travel agent</option>
-            <option>Religious group leader</option>
-            <option>Family head</option>
-            <option>Joint group decision</option>
-            <option>Other</option>
-          </select>
-        </label>
+        <fieldset class="answer-question">
+          <legend>Who arranged this trip?</legend><span class="field-helper">Who mainly planned and organised the transport and travel for this trip?</span>
+          <div class="answer-buttons">
+            <label class="answer-choice"><input type="radio" name="transportDecisionMaker" value="Self" required><span>Self</span></label>
+            <label class="answer-choice"><input type="radio" name="transportDecisionMaker" value="Family"><span>Family</span></label>
+            <label class="answer-choice"><input type="radio" name="transportDecisionMaker" value="Tour operator / Travel agent"><span>Tour operator / Agent</span></label>
+            <label class="answer-choice"><input type="radio" name="transportDecisionMaker" value="Other"><span>Other</span></label>
+          </div>
+        </fieldset>
 
         <fieldset class="answer-question">
           <legend>Yatra registration status:</legend><span class="field-helper">Did you register on the official Char Dham Yatra portal?</span>
@@ -361,29 +329,89 @@
         </fieldset>
 
         <h3>A1.2: Mobility &amp; Hill-Walking Ability</h3>
-        <label>Your ability to walk on steep or long hill paths:
-          <span class="field-helper">Select the option that best describes <strong>you personally</strong> when walking to shrines such as Kedarnath or Hemkund Sahib.</span>
-          <select name="trekFitness" required>
-            <option value="">--Select--</option>
-            <option value="No difficulty">No difficulty : can manage steep or long paths comfortably</option>
-            <option value="Manageable with rests">Manageable : can complete the walk with occasional rests</option>
-            <option value="Difficult without assistance">Difficult : gets tired quickly or needs help from a companion</option>
-            <option value="Needs mobility assistance">Needs a mobility aid, carrier, vehicle, or mechanical option</option>
-            <option value="Unable to walk the route">Unable to walk the route</option>
-            <option value="Prefer not to say">Prefer not to say</option>
-          </select>
-        </label>
+        <fieldset class="answer-question">
+          <legend>Your ability to walk on steep or long hill paths:</legend>
+          <span class="field-helper">Choose the option that best describes <strong>you personally</strong> when walking to shrines such as Kedarnath or Hemkund Sahib.</span>
+          <div class="pictogram-grid">
+            <label class="picto-card">
+              <input type="radio" name="trekFitness" value="No difficulty" required>
+              <span class="picto-card-inner">
+                <span class="picto-card-icon">🏃</span>
+                <span>Walks with ease</span>
+              </span>
+            </label>
+            <label class="picto-card">
+              <input type="radio" name="trekFitness" value="Manageable with rests">
+              <span class="picto-card-inner">
+                <span class="picto-card-icon">🚶</span>
+                <span>Walks with breaks</span>
+              </span>
+            </label>
+            <label class="picto-card">
+              <input type="radio" name="trekFitness" value="Difficult without assistance">
+              <span class="picto-card-inner">
+                <span class="picto-card-icon">🤝</span>
+                <span>Needs companion's help</span>
+              </span>
+            </label>
+            <label class="picto-card">
+              <input type="radio" name="trekFitness" value="Needs mobility assistance">
+              <span class="picto-card-inner">
+                <span class="picto-card-icon">🪑</span>
+                <span>Needs carrier or vehicle</span>
+              </span>
+            </label>
+            <label class="picto-card">
+              <input type="radio" name="trekFitness" value="Unable to walk the route">
+              <span class="picto-card-inner">
+                <span class="picto-card-icon">🚫</span>
+                <span>Cannot walk the route</span>
+              </span>
+            </label>
+            <label class="picto-card">
+              <input type="radio" name="trekFitness" value="Prefer not to say">
+              <span class="picto-card-inner">
+                <span class="picto-card-icon">❓</span>
+                <span>Prefer not to say</span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
 
-        <label>Do you have any health condition affecting long walks or climbs?
+        <fieldset class="answer-question">
+          <legend>Health condition affecting long walks or climbs:</legend>
           <span class="field-helper">This helps us understand how transport options are chosen by pilgrims with different needs.</span>
-          <select name="healthLimitation" required>
-            <option value="">--Select--</option>
-            <option value="No limitation">No health limitation for walking or climbing</option>
-            <option value="Minor">Minor : manageable with breaks and rest</option>
-            <option value="Significant">Significant : needs assistance or a non-trekking option</option>
-            <option value="Prefer not to say">Prefer not to say</option>
-          </select>
-        </label>
+          <div class="pictogram-grid">
+            <label class="picto-card">
+              <input type="radio" name="healthLimitation" value="No limitation" required>
+              <span class="picto-card-inner">
+                <span class="picto-card-icon">💪</span>
+                <span>No limitation</span>
+              </span>
+            </label>
+            <label class="picto-card">
+              <input type="radio" name="healthLimitation" value="Minor">
+              <span class="picto-card-inner">
+                <span class="picto-card-icon">⚡</span>
+                <span>Minor, manageable with breaks</span>
+              </span>
+            </label>
+            <label class="picto-card">
+              <input type="radio" name="healthLimitation" value="Significant">
+              <span class="picto-card-inner">
+                <span class="picto-card-icon">🏥</span>
+                <span>Significant, needs non-trekking option</span>
+              </span>
+            </label>
+            <label class="picto-card">
+              <input type="radio" name="healthLimitation" value="Prefer not to say">
+              <span class="picto-card-inner">
+                <span class="picto-card-icon">❓</span>
+                <span>Prefer not to say</span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
 
         <h3>A2: Visit History &amp; Frequency</h3>
         <p>For each Dham, mark how many times you visited before and whether it is included in this trip.</p>
@@ -496,8 +524,9 @@
           <legend>Trip starting point:</legend><span class="field-helper">Select where your Char Dham journey starts.</span>
           <div class="answer-buttons">
             <label class="answer-choice"><input type="radio" name="startPoint" value="Haridwar" required><span>Haridwar</span></label>
-            <label class="answer-choice"><input type="radio" name="startPoint" value="Rishikesh" required><span>Rishikesh</span></label>
-            <label class="answer-choice"><input type="radio" name="startPoint" value="Other" required><span>Other</span></label>
+            <label class="answer-choice"><input type="radio" name="startPoint" value="Rishikesh"><span>Rishikesh</span></label>
+            <label class="answer-choice"><input type="radio" name="startPoint" value="Dehradun"><span>Dehradun</span></label>
+            <label class="answer-choice"><input type="radio" name="startPoint" value="Other"><span>Other</span></label>
           </div>
         </fieldset>
 
@@ -924,18 +953,19 @@
           <tr>
             <th style="text-align:left;min-width:220px;">Statement</th>
             <th>1<br><small style="font-weight:normal;">Strongly<br>Disagree</small></th>
-            <th>2</th><th>3</th><th>4</th>
+            <th>2<br><small style="font-weight:normal;">Disagree</small></th>
+            <th>3<br><small style="font-weight:normal;">Neutral</small></th>
+            <th>4<br><small style="font-weight:normal;">Agree</small></th>
             <th>5<br><small style="font-weight:normal;">Strongly<br>Agree</small></th>
-            <th>N/A</th>
           </tr>
-          <tr><td>The service was easy to find and board</td><td><input type="radio" name="evalFindBoard" value="1"></td><td><input type="radio" name="evalFindBoard" value="2"></td><td><input type="radio" name="evalFindBoard" value="3"></td><td><input type="radio" name="evalFindBoard" value="4"></td><td><input type="radio" name="evalFindBoard" value="5"></td><td><input type="radio" name="evalFindBoard" value="na"></td></tr>
-          <tr><td>The service ran as expected : no unexpected delays or cancellations</td><td><input type="radio" name="evalReliability" value="1"></td><td><input type="radio" name="evalReliability" value="2"></td><td><input type="radio" name="evalReliability" value="3"></td><td><input type="radio" name="evalReliability" value="4"></td><td><input type="radio" name="evalReliability" value="5"></td><td><input type="radio" name="evalReliability" value="na"></td></tr>
-          <tr><td>The journey was physically comfortable</td><td><input type="radio" name="evalComfort" value="1"></td><td><input type="radio" name="evalComfort" value="2"></td><td><input type="radio" name="evalComfort" value="3"></td><td><input type="radio" name="evalComfort" value="4"></td><td><input type="radio" name="evalComfort" value="5"></td><td><input type="radio" name="evalComfort" value="na"></td></tr>
-          <tr><td>I felt safe throughout this part of the journey</td><td><input type="radio" name="evalSafety" value="1"></td><td><input type="radio" name="evalSafety" value="2"></td><td><input type="radio" name="evalSafety" value="3"></td><td><input type="radio" name="evalSafety" value="4"></td><td><input type="radio" name="evalSafety" value="5"></td><td><input type="radio" name="evalSafety" value="na"></td></tr>
-          <tr><td>The fare was reasonable for the service provided</td><td><input type="radio" name="evalCostFair" value="1"></td><td><input type="radio" name="evalCostFair" value="2"></td><td><input type="radio" name="evalCostFair" value="3"></td><td><input type="radio" name="evalCostFair" value="4"></td><td><input type="radio" name="evalCostFair" value="5"></td><td><input type="radio" name="evalCostFair" value="na"></td></tr>
-          <tr><td>The total travel time (including waiting) was acceptable</td><td><input type="radio" name="evalTimeAccept" value="1"></td><td><input type="radio" name="evalTimeAccept" value="2"></td><td><input type="radio" name="evalTimeAccept" value="3"></td><td><input type="radio" name="evalTimeAccept" value="4"></td><td><input type="radio" name="evalTimeAccept" value="5"></td><td><input type="radio" name="evalTimeAccept" value="na"></td></tr>
-          <tr><td>Information on routes, fares, and timings was easy to find</td><td><input type="radio" name="evalInfo" value="1"></td><td><input type="radio" name="evalInfo" value="2"></td><td><input type="radio" name="evalInfo" value="3"></td><td><input type="radio" name="evalInfo" value="4"></td><td><input type="radio" name="evalInfo" value="5"></td><td><input type="radio" name="evalInfo" value="na"></td></tr>
-          <tr><td>Signs and directions along the route were clear and helpful</td><td><input type="radio" name="evalSignage" value="1"></td><td><input type="radio" name="evalSignage" value="2"></td><td><input type="radio" name="evalSignage" value="3"></td><td><input type="radio" name="evalSignage" value="4"></td><td><input type="radio" name="evalSignage" value="5"></td><td><input type="radio" name="evalSignage" value="na"></td></tr>
+          <tr><td>The service was easy to find and board</td><td><input type="radio" name="evalFindBoard" value="1"></td><td><input type="radio" name="evalFindBoard" value="2"></td><td><input type="radio" name="evalFindBoard" value="3"></td><td><input type="radio" name="evalFindBoard" value="4"></td><td><input type="radio" name="evalFindBoard" value="5"></td></tr>
+          <tr><td>The service ran as expected : no unexpected delays or cancellations</td><td><input type="radio" name="evalReliability" value="1"></td><td><input type="radio" name="evalReliability" value="2"></td><td><input type="radio" name="evalReliability" value="3"></td><td><input type="radio" name="evalReliability" value="4"></td><td><input type="radio" name="evalReliability" value="5"></td></tr>
+          <tr><td>The journey was physically comfortable</td><td><input type="radio" name="evalComfort" value="1"></td><td><input type="radio" name="evalComfort" value="2"></td><td><input type="radio" name="evalComfort" value="3"></td><td><input type="radio" name="evalComfort" value="4"></td><td><input type="radio" name="evalComfort" value="5"></td></tr>
+          <tr><td>I felt safe throughout this part of the journey</td><td><input type="radio" name="evalSafety" value="1"></td><td><input type="radio" name="evalSafety" value="2"></td><td><input type="radio" name="evalSafety" value="3"></td><td><input type="radio" name="evalSafety" value="4"></td><td><input type="radio" name="evalSafety" value="5"></td></tr>
+          <tr><td>The fare was reasonable for the service provided</td><td><input type="radio" name="evalCostFair" value="1"></td><td><input type="radio" name="evalCostFair" value="2"></td><td><input type="radio" name="evalCostFair" value="3"></td><td><input type="radio" name="evalCostFair" value="4"></td><td><input type="radio" name="evalCostFair" value="5"></td></tr>
+          <tr><td>The total travel time (including waiting) was acceptable</td><td><input type="radio" name="evalTimeAccept" value="1"></td><td><input type="radio" name="evalTimeAccept" value="2"></td><td><input type="radio" name="evalTimeAccept" value="3"></td><td><input type="radio" name="evalTimeAccept" value="4"></td><td><input type="radio" name="evalTimeAccept" value="5"></td></tr>
+          <tr><td>Information on routes, fares, and timings was easy to find</td><td><input type="radio" name="evalInfo" value="1"></td><td><input type="radio" name="evalInfo" value="2"></td><td><input type="radio" name="evalInfo" value="3"></td><td><input type="radio" name="evalInfo" value="4"></td><td><input type="radio" name="evalInfo" value="5"></td></tr>
+          <tr><td>Signs and directions along the route were clear and helpful</td><td><input type="radio" name="evalSignage" value="1"></td><td><input type="radio" name="evalSignage" value="2"></td><td><input type="radio" name="evalSignage" value="3"></td><td><input type="radio" name="evalSignage" value="4"></td><td><input type="radio" name="evalSignage" value="5"></td></tr>
         </table>
         </div>
 
@@ -949,29 +979,22 @@
           <tr>
             <th style="text-align:left;min-width:220px;">Statement</th>
             <th>1<br><small style="font-weight:normal;">Strongly<br>Disagree</small></th>
-            <th>2</th><th>3</th><th>4</th>
+            <th>2<br><small style="font-weight:normal;">Disagree</small></th>
+            <th>3<br><small style="font-weight:normal;">Neutral</small></th>
+            <th>4<br><small style="font-weight:normal;">Agree</small></th>
             <th>5<br><small style="font-weight:normal;">Strongly<br>Agree</small></th>
-            <th>N/A</th>
           </tr>
-          <tr><td>The service was easy to find and board</td><td><input type="radio" name="lastMileEvalFindBoard" value="1"></td><td><input type="radio" name="lastMileEvalFindBoard" value="2"></td><td><input type="radio" name="lastMileEvalFindBoard" value="3"></td><td><input type="radio" name="lastMileEvalFindBoard" value="4"></td><td><input type="radio" name="lastMileEvalFindBoard" value="5"></td><td><input type="radio" name="lastMileEvalFindBoard" value="na"></td></tr>
-          <tr><td>The service ran as expected : no unexpected delays or cancellations</td><td><input type="radio" name="lastMileEvalReliability" value="1"></td><td><input type="radio" name="lastMileEvalReliability" value="2"></td><td><input type="radio" name="lastMileEvalReliability" value="3"></td><td><input type="radio" name="lastMileEvalReliability" value="4"></td><td><input type="radio" name="lastMileEvalReliability" value="5"></td><td><input type="radio" name="lastMileEvalReliability" value="na"></td></tr>
-          <tr><td>The journey was physically comfortable</td><td><input type="radio" name="lastMileEvalComfort" value="1"></td><td><input type="radio" name="lastMileEvalComfort" value="2"></td><td><input type="radio" name="lastMileEvalComfort" value="3"></td><td><input type="radio" name="lastMileEvalComfort" value="4"></td><td><input type="radio" name="lastMileEvalComfort" value="5"></td><td><input type="radio" name="lastMileEvalComfort" value="na"></td></tr>
-          <tr><td>I felt safe throughout this part of the journey</td><td><input type="radio" name="lastMileEvalSafety" value="1"></td><td><input type="radio" name="lastMileEvalSafety" value="2"></td><td><input type="radio" name="lastMileEvalSafety" value="3"></td><td><input type="radio" name="lastMileEvalSafety" value="4"></td><td><input type="radio" name="lastMileEvalSafety" value="5"></td><td><input type="radio" name="lastMileEvalSafety" value="na"></td></tr>
-          <tr><td>The fare / cost was reasonable for the service provided</td><td><input type="radio" name="lastMileEvalCostFair" value="1"></td><td><input type="radio" name="lastMileEvalCostFair" value="2"></td><td><input type="radio" name="lastMileEvalCostFair" value="3"></td><td><input type="radio" name="lastMileEvalCostFair" value="4"></td><td><input type="radio" name="lastMileEvalCostFair" value="5"></td><td><input type="radio" name="lastMileEvalCostFair" value="na"></td></tr>
-          <tr><td>The total travel time (including waiting) was acceptable</td><td><input type="radio" name="lastMileEvalTimeAccept" value="1"></td><td><input type="radio" name="lastMileEvalTimeAccept" value="2"></td><td><input type="radio" name="lastMileEvalTimeAccept" value="3"></td><td><input type="radio" name="lastMileEvalTimeAccept" value="4"></td><td><input type="radio" name="lastMileEvalTimeAccept" value="5"></td><td><input type="radio" name="lastMileEvalTimeAccept" value="na"></td></tr>
-          <tr><td>Information on routes, fares, and timings was easy to find</td><td><input type="radio" name="lastMileEvalInfo" value="1"></td><td><input type="radio" name="lastMileEvalInfo" value="2"></td><td><input type="radio" name="lastMileEvalInfo" value="3"></td><td><input type="radio" name="lastMileEvalInfo" value="4"></td><td><input type="radio" name="lastMileEvalInfo" value="5"></td><td><input type="radio" name="lastMileEvalInfo" value="na"></td></tr>
-          <tr><td>Signs and directions along the route were clear and helpful</td><td><input type="radio" name="lastMileEvalSignage" value="1"></td><td><input type="radio" name="lastMileEvalSignage" value="2"></td><td><input type="radio" name="lastMileEvalSignage" value="3"></td><td><input type="radio" name="lastMileEvalSignage" value="4"></td><td><input type="radio" name="lastMileEvalSignage" value="5"></td><td><input type="radio" name="lastMileEvalSignage" value="na"></td></tr>
+          <tr><td>The service was easy to find and board</td><td><input type="radio" name="lastMileEvalFindBoard" value="1"></td><td><input type="radio" name="lastMileEvalFindBoard" value="2"></td><td><input type="radio" name="lastMileEvalFindBoard" value="3"></td><td><input type="radio" name="lastMileEvalFindBoard" value="4"></td><td><input type="radio" name="lastMileEvalFindBoard" value="5"></td></tr>
+          <tr><td>The service ran as expected : no unexpected delays or cancellations</td><td><input type="radio" name="lastMileEvalReliability" value="1"></td><td><input type="radio" name="lastMileEvalReliability" value="2"></td><td><input type="radio" name="lastMileEvalReliability" value="3"></td><td><input type="radio" name="lastMileEvalReliability" value="4"></td><td><input type="radio" name="lastMileEvalReliability" value="5"></td></tr>
+          <tr><td>The journey was physically comfortable</td><td><input type="radio" name="lastMileEvalComfort" value="1"></td><td><input type="radio" name="lastMileEvalComfort" value="2"></td><td><input type="radio" name="lastMileEvalComfort" value="3"></td><td><input type="radio" name="lastMileEvalComfort" value="4"></td><td><input type="radio" name="lastMileEvalComfort" value="5"></td></tr>
+          <tr><td>I felt safe throughout this part of the journey</td><td><input type="radio" name="lastMileEvalSafety" value="1"></td><td><input type="radio" name="lastMileEvalSafety" value="2"></td><td><input type="radio" name="lastMileEvalSafety" value="3"></td><td><input type="radio" name="lastMileEvalSafety" value="4"></td><td><input type="radio" name="lastMileEvalSafety" value="5"></td></tr>
+          <tr><td>The fare / cost was reasonable for the service provided</td><td><input type="radio" name="lastMileEvalCostFair" value="1"></td><td><input type="radio" name="lastMileEvalCostFair" value="2"></td><td><input type="radio" name="lastMileEvalCostFair" value="3"></td><td><input type="radio" name="lastMileEvalCostFair" value="4"></td><td><input type="radio" name="lastMileEvalCostFair" value="5"></td></tr>
+          <tr><td>The total travel time (including waiting) was acceptable</td><td><input type="radio" name="lastMileEvalTimeAccept" value="1"></td><td><input type="radio" name="lastMileEvalTimeAccept" value="2"></td><td><input type="radio" name="lastMileEvalTimeAccept" value="3"></td><td><input type="radio" name="lastMileEvalTimeAccept" value="4"></td><td><input type="radio" name="lastMileEvalTimeAccept" value="5"></td></tr>
+          <tr><td>Information on routes, fares, and timings was easy to find</td><td><input type="radio" name="lastMileEvalInfo" value="1"></td><td><input type="radio" name="lastMileEvalInfo" value="2"></td><td><input type="radio" name="lastMileEvalInfo" value="3"></td><td><input type="radio" name="lastMileEvalInfo" value="4"></td><td><input type="radio" name="lastMileEvalInfo" value="5"></td></tr>
+          <tr><td>Signs and directions along the route were clear and helpful</td><td><input type="radio" name="lastMileEvalSignage" value="1"></td><td><input type="radio" name="lastMileEvalSignage" value="2"></td><td><input type="radio" name="lastMileEvalSignage" value="3"></td><td><input type="radio" name="lastMileEvalSignage" value="4"></td><td><input type="radio" name="lastMileEvalSignage" value="5"></td></tr>
         </table>
         </div>
 
-        <h4>Overall Trip Satisfaction</h4>
-        <p class="field-helper">Rate your overall Chardham pilgrimage experience including transport, on a scale of 1 (very dissatisfied) to 10 (fully satisfied).</p>
-        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0;">
-          <span style="white-space:nowrap;">1 (Poor)</span>
-          <input type="range" name="overallSatisfaction" min="1" max="10" step="1" id="satisfactionSlider" style="flex:1;min-width:180px;" oninput="updateSatisfactionSlider(this)">
-          <span style="white-space:nowrap;">10 (Excellent)</span>
-          <strong id="satisfactionVal" style="min-width:28px;text-align:center;font-size:1.1em;"></strong>
-        </div>
         <p class="field-helper" style="margin-top:12px;">Would you visit Chardham again in upcoming  years?</p>
         <div style="display:flex;gap:20px;flex-wrap:wrap;margin:4px 0 12px 0;">
           <label><input type="radio" name="intentToReturn" value="Yes" required> Yes</label>
@@ -1342,9 +1365,11 @@
       <thead>
         <tr>
           <th>Factor</th>
-          <th>1 (Not Important)</th>
-          <th>2</th><th>3</th><th>4</th>
-          <th>5 (Very Important)</th>
+          <th>1<br><small style="font-weight:normal;">Not<br>Important</small></th>
+          <th>2<br><small style="font-weight:normal;">Slightly<br>Important</small></th>
+          <th>3<br><small style="font-weight:normal;">Moderately<br>Important</small></th>
+          <th>4<br><small style="font-weight:normal;">Important</small></th>
+          <th>5<br><small style="font-weight:normal;">Very<br>Important</small></th>
         </tr>
       </thead>
       <tbody>
@@ -1393,7 +1418,7 @@
     <p class="fatigue-progress">Section D · Part 2 of 4 · About 2 minutes remaining</p>
     <p class="field-helper">Rate how much you agree with each statement. 1 = strongly disagree, 5 = strongly agree.</p>
     <table class="likert-scale">
-      <thead><tr><th>Statement</th><th>1 (Strongly Disagree)</th><th>2</th><th>3</th><th>4</th><th>5 (Strongly Agree)</th></tr></thead>
+      <thead><tr><th>Statement</th><th>1<br><small style="font-weight:normal;">Strongly<br>Disagree</small></th><th>2<br><small style="font-weight:normal;">Disagree</small></th><th>3<br><small style="font-weight:normal;">Neutral</small></th><th>4<br><small style="font-weight:normal;">Agree</small></th><th>5<br><small style="font-weight:normal;">Strongly<br>Agree</small></th></tr></thead>
       <tbody>
         <tr>
           <td>Physical effort during the pilgrimage is spiritually important to me.</td>
@@ -1466,7 +1491,7 @@
     <p class="fatigue-progress">Section D · Part 3 of 4 · About 1.5 minutes remaining</p>
     <p class="field-helper">1 = strongly disagree, 5 = strongly agree.</p>
     <table class="likert-scale">
-      <thead><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+      <thead><tr><th>Statement</th><th>1<br><small style="font-weight:normal;">Strongly<br>Disagree</small></th><th>2<br><small style="font-weight:normal;">Disagree</small></th><th>3<br><small style="font-weight:normal;">Neutral</small></th><th>4<br><small style="font-weight:normal;">Agree</small></th><th>5<br><small style="font-weight:normal;">Strongly<br>Agree</small></th></tr></thead>
       <tbody>
         <tr>
           <td>I would prefer ropeway over trekking even if it costs more.</td>
@@ -1579,7 +1604,7 @@
     <p class="fatigue-progress">Section D · Part 4 of 4 · Almost done!</p>
     <p class="field-helper">1 = strongly disagree, 5 = strongly agree.</p>
     <table class="likert-scale">
-      <thead><tr><th>Statement</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+      <thead><tr><th>Statement</th><th>1<br><small style="font-weight:normal;">Strongly<br>Disagree</small></th><th>2<br><small style="font-weight:normal;">Disagree</small></th><th>3<br><small style="font-weight:normal;">Neutral</small></th><th>4<br><small style="font-weight:normal;">Agree</small></th><th>5<br><small style="font-weight:normal;">Strongly<br>Agree</small></th></tr></thead>
       <tbody>
         <tr>
           <td>Rail travel would significantly reduce my stress on the Chardham journey.</td>
@@ -1638,7 +1663,7 @@
     <h3>D4: Environmental Attitudes</h3>
     <p class="field-helper">Rate how much you agree with each statement. 1 = strongly disagree, 5 = strongly agree.</p>
     <table class="likert-scale">
-      <thead><tr><th>Statement</th><th>1 (Strongly Disagree)</th><th>2</th><th>3</th><th>4</th><th>5 (Strongly Agree)</th></tr></thead>
+      <thead><tr><th>Statement</th><th>1<br><small style="font-weight:normal;">Strongly<br>Disagree</small></th><th>2<br><small style="font-weight:normal;">Disagree</small></th><th>3<br><small style="font-weight:normal;">Neutral</small></th><th>4<br><small style="font-weight:normal;">Agree</small></th><th>5<br><small style="font-weight:normal;">Strongly<br>Agree</small></th></tr></thead>
       <tbody>
         <tr>
           <td>Too many vehicles on mountain roads cause environmental damage near the Dhams.</td>
@@ -1678,17 +1703,37 @@
     <h2>Section F: Feedback & Suggestions</h2>
 
     <label>Overall trip rating:
-      <span class="field-helper">Considering everything temples, transport, facilities how would you rate this Chardham trip overall?</span>
-      <select name="overallTripRating" required>
-        <option value="">--Select--</option>
-        <option>Not yet travelled</option>
-        <option>Excellent exceeded expectations</option>
-        <option>Good met expectations</option>
-        <option>Average some disappointments</option>
-        <option>Below average significant issues</option>
-        <option>Poor very dissatisfied</option>
-      </select>
+      <span class="field-helper">Considering everything (temples, transport, facilities) how would you rate this Chardham trip overall?</span>
     </label>
+    <div class="trip-slider-wrap">
+      <div class="trip-slider-val-row">
+        <strong id="tripRatingVal" class="trip-slider-val empty">Move the slider to rate</strong>
+      </div>
+      <div class="trip-slider-row">
+        <span class="trip-slider-edge">1</span>
+        <input type="range" name="overallTripRating" id="tripRatingSlider" min="1" max="10" step="1"
+               oninput="updateTripSlider(this)" required>
+        <span class="trip-slider-edge">10</span>
+      </div>
+      <div class="trip-slider-ticks">
+        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+        <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+      </div>
+      <div class="trip-slider-labels">
+        <span>😞 Very Poor</span>
+        <span>😐 Average</span>
+        <span>😊 Excellent</span>
+      </div>
+    </div>
+    <script>
+    var _tripSliderLabels = ['','😞 Very Poor','😞 Very Poor','😟 Poor','😕 Below Average','😐 Average','🙂 Above Average','🙂 Good','😊 Good','😄 Excellent','😄 Excellent'];
+    function updateTripSlider(el){
+      var v = parseInt(el.value);
+      var badge = document.getElementById('tripRatingVal');
+      badge.textContent = v + ' / 10  –  ' + _tripSliderLabels[v];
+      badge.classList.remove('empty');
+    }
+    </script>
 
     <label>Travel challenges (select all that apply):
       <span class="field-helper">Select the problems you faced or expect during the journey to/from the Dhams.</span>

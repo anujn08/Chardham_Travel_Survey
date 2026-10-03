@@ -407,7 +407,7 @@ function validatePage(n) {
         firstInvalidEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
-    // 3. Check Checkbox groups for A4.2 (Last Mile Mode)
+    // 4. Check Checkbox groups for A4.2 (Last Mile Mode)
     if (page.id === 'page-2-B') {
         if (!validateGroupComposition()) {
             valid = false;
