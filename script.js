@@ -2791,9 +2791,42 @@ function refreshDhamSequenceOptions() {
     lockEnglishOptionValues(document.getElementById('dhamSequenceSelection'));
 }
 
+function handleBudgetScopeChange() {
+    const scope = document.querySelector('input[name="transportBudgetBasis"]:checked')?.value;
+    const perBlock   = document.getElementById('budgetPerPersonBlock');
+    const groupBlock = document.getElementById('budgetGroupBlock');
+    // Clear any previous selection in the block being hidden
+    if (scope === 'Per person') {
+        document.querySelectorAll('input[name="transportBudgetGroup"]').forEach(r => r.checked = false);
+        if (perBlock)   perBlock.style.display   = '';
+        if (groupBlock) groupBlock.style.display  = 'none';
+    } else if (scope === 'Whole group') {
+        document.querySelectorAll('input[name="transportBudget"]').forEach(r => r.checked = false);
+        if (perBlock)   perBlock.style.display   = 'none';
+        if (groupBlock) groupBlock.style.display  = '';
+    }
+}
+
 function handleTravelTypeChange() {
     updateAccommodationCosts();
     const travelType = document.querySelector('input[name="travelType"]:checked')?.value;
+    const budgetScopeBlock = document.getElementById('budgetScopeBlock');
+    const perBlock         = document.getElementById('budgetPerPersonBlock');
+    const groupBlock       = document.getElementById('budgetGroupBlock');
+    if (travelType === 'Solo') {
+        if (budgetScopeBlock) budgetScopeBlock.style.display = 'none';
+        if (perBlock)         perBlock.style.display         = '';
+        if (groupBlock)       groupBlock.style.display       = 'none';
+        document.querySelectorAll('input[name="transportBudgetBasis"]').forEach(r => r.checked = false);
+        document.querySelectorAll('input[name="transportBudgetGroup"]').forEach(r => r.checked = false);
+    } else if (travelType === 'Group') {
+        if (budgetScopeBlock) budgetScopeBlock.style.display = '';
+        if (perBlock)         perBlock.style.display         = 'none';
+        if (groupBlock)       groupBlock.style.display       = 'none';
+        document.querySelectorAll('input[name="transportBudgetBasis"]').forEach(r => r.checked = false);
+        document.querySelectorAll('input[name="transportBudget"]').forEach(r => r.checked = false);
+        document.querySelectorAll('input[name="transportBudgetGroup"]').forEach(r => r.checked = false);
+    }
     const groupSizeInput = document.getElementById('groupSize');
     const groupSizeLabel = document.getElementById('groupSizeLabel');
     const groupSizeHelper = document.getElementById('groupSizeHelper');
@@ -3156,51 +3189,12 @@ function enhanceRatingTables() {
             });
         });
         if (table.style.display === 'none') return;
-        if (table.dataset.quickRatingReady === 'true') return;
-        table.dataset.quickRatingReady = 'true';
-
-        const quickFill = document.createElement('div');
-        quickFill.className = 'quick-rating-controls';
-        quickFill.innerHTML = `
-            <span>Quick fill:</span>
-            <button type="button" data-rating="1">1</button>
-            <button type="button" data-rating="2">2</button>
-            <button type="button" data-rating="3">3</button>
-            <button type="button" data-rating="4">4</button>
-            <button type="button" data-rating="5">5</button>
-            <button type="button" data-rating-clear="true">Clear</button>
-        `;
-        table.parentNode.insertBefore(quickFill, table);
-
-        const clearQuickFillHighlight = () => {
-            quickFill.querySelectorAll('button[data-rating]').forEach(btn => btn.setAttribute('aria-pressed', 'false'));
-        };
-
-        quickFill.addEventListener('click', event => {
-            const button = event.target.closest('button');
-            if (!button) return;
-
-            const radioGroups = new Set(Array.from(table.querySelectorAll('input[type="radio"]')).map(radio => radio.name));
-            if (button.dataset.ratingClear === 'true') {
-                table.querySelectorAll('input[type="radio"]').forEach(radio => { radio.checked = false; });
-                clearQuickFillHighlight();
-                return;
-            }
-
-            const rating = button.dataset.rating;
-            radioGroups.forEach(name => {
-                const radio = table.querySelector(`input[type="radio"][name="${name}"][value="${rating}"]`);
-                if (radio) radio.checked = true;
-            });
-            clearQuickFillHighlight();
-            button.setAttribute('aria-pressed', 'true');
-        });
 
         table.addEventListener('click', event => {
             const cell = event.target.closest('td');
             if (!cell) return;
             const radio = cell.querySelector('input[type="radio"]');
-            if (radio) { radio.checked = true; clearQuickFillHighlight(); }
+            if (radio) radio.checked = true;
         });
     });
 }
@@ -3836,7 +3830,7 @@ function getLocalRawColumnGroups(responsesToExport) {
         { section: 'Submission', fields: ['responseId', 'surveyStartTimestamp', 'surveySubmitTimestamp', 'surveyCompletionSeconds', 'choiceBlock', 'deviceId', 'deviceFingerprint', 'geoLat', 'geoLng', 'geoAccuracy', 'geoTimestamp', 'geoStatus', 'fatigueMetrics'] },
         { section: 'Respondent Profile', fields: ['age', 'gender', 'originStateUT', 'originCityDistrict', 'occupation', 'income', 'education'] },
         { section: 'Travel Group', fields: ['tripStatus', 'travelType', 'groupSize', 'groupAdults', 'groupChildren', 'groupElderly', 'groupAssistanceCount', 'trekFitness', 'healthLimitation'] },
-        { section: 'Planning And Budget', fields: ['transportInfoSource', 'transportBookingMethod', 'transportDecisionMaker', 'yatraRegistration', 'transportBudget'] },
+        { section: 'Planning And Budget', fields: ['transportDecisionMaker', 'yatraRegistration', 'transportBudgetBasis', 'transportBudget', 'transportBudgetGroup'] },
         { section: 'Visit History And Itinerary', fields: ['kedarnath', 'badrinath', 'gangotri', 'yamunotri', 'hemkund', 'dhamCurrentVisit', ...matching(/^ongoingDhamStatus_/), 'repeatVisitReason', 'priorModeExp', 'startPoint', 'otherStartPoint', 'totalDurationDays', ...matching(/^dhamSequence_\d+$/)] },
         { section: 'Main-Haul Transfers', fields: ['onwardVehicleContinuity', 'mainHaulTransferCount_Kedarnath', 'mainHaulTransferCount_Badrinath', 'mainHaulTransferCount_Gangotri', 'mainHaulTransferCount_Yamunotri', 'mainHaulTransferCount_HemkundSahib', ...matching(/^mainHaulTransfer(Location|Mode|Time|TimeRange|Cost|CostRange|FareBasis|Occupancy)_/)] },
         { section: 'Main-Haul Travel Rows', fields: dynamicIndexed(['primaryDham', 'primaryRoute', 'primaryMode', 'primaryTime', 'primaryTimeRange', 'primaryCost', 'primaryCostRange', 'primaryFareBasis', 'primaryOccupancy', 'primaryHelicopterScope', 'primaryHelicopterCoveredDhams', 'primaryHelicopterBoardingPoint', 'primaryHelicopterPackageDuration', 'primaryHelicopterFareIncludes', 'primaryHelicopterBookingDifficulty', 'primaryHelicopterWaiting', 'primaryHelicopterDisruption', 'primaryHelicopterWeightCharge']) },
@@ -4165,6 +4159,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById("addRestLocationRow").addEventListener('click', addRestLocationRow);
     // A2 Travel Type
     document.getElementById('travelType').addEventListener('change', handleTravelTypeChange);
+    document.getElementById('budgetScopeBlock').addEventListener('change', handleBudgetScopeChange);
     document.getElementById('onwardVehicleContinuity').addEventListener('change', handleOnwardVehicleContinuity);
     document.getElementById('startPoint').addEventListener('change', handleStartPointChange);
     document.getElementById('otherStartPoint').addEventListener('input', () => {

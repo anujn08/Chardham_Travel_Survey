@@ -315,9 +315,19 @@
           </div>
         </fieldset>
 
-        <fieldset class="answer-question">
-          <legend>Transport spending/budget for this trip:</legend>
-          <span class="field-helper">How much did you spend (or plan to spend) on transport alone bus, taxi, helicopter, palki, ropeway, etc. for the full return trip? Do not include stay or food.</span>
+        <!-- Shown for Group travelers only -->
+        <fieldset class="answer-question" id="budgetScopeBlock" style="display:none">
+          <legend>Is this transport cost per person or for the whole group?</legend>
+          <span class="field-helper">Group travel costs can vary a lot — a tour package for 6 people is very different from one person's share. Tell us which figure you can give.</span>
+          <div class="answer-buttons">
+            <label class="answer-choice"><input type="radio" name="transportBudgetBasis" value="Per person"><span>Per person</span></label>
+            <label class="answer-choice"><input type="radio" name="transportBudgetBasis" value="Whole group"><span>Whole group</span></label>
+          </div>
+        </fieldset>
+
+        <!-- Per-person budget (always shown for Solo; shown for Group when Per person selected) -->
+        <fieldset class="answer-question" id="budgetPerPersonBlock">
+          <legend>Transport spending per person:</legend>
           <div class="answer-buttons">
             <label class="answer-choice"><input type="radio" name="transportBudget" value="Below Rs 2000" required><span>Below ₹2,000</span></label>
             <label class="answer-choice"><input type="radio" name="transportBudget" value="Rs 2000-5000"><span>₹2,000–₹5,000</span></label>
@@ -328,53 +338,146 @@
           </div>
         </fieldset>
 
+        <!-- Group total budget (shown for Group when Whole group selected) -->
+        <fieldset class="answer-question" id="budgetGroupBlock" style="display:none">
+          <legend>Total transport spending for the whole group:</legend>
+          <span class="field-helper">Combined transport cost for your entire group — bus, taxi, helicopter, palki, ropeway, tour package, etc. — for the full return trip. Do not include stay or food.</span>
+          <div class="answer-buttons">
+            <label class="answer-choice"><input type="radio" name="transportBudgetGroup" value="Below Rs 10000"><span>Below ₹10,000</span></label>
+            <label class="answer-choice"><input type="radio" name="transportBudgetGroup" value="Rs 10000-25000"><span>₹10,000–₹25,000</span></label>
+            <label class="answer-choice"><input type="radio" name="transportBudgetGroup" value="Rs 25000-50000"><span>₹25,000–₹50,000</span></label>
+            <label class="answer-choice"><input type="radio" name="transportBudgetGroup" value="Rs 50000-100000"><span>₹50,000–₹1,00,000</span></label>
+            <label class="answer-choice"><input type="radio" name="transportBudgetGroup" value="Above Rs 100000"><span>Above ₹1,00,000</span></label>
+            <label class="answer-choice"><input type="radio" name="transportBudgetGroup" value="Prefer not to say"><span>Prefer not to say</span></label>
+          </div>
+        </fieldset>
+
         <h3>A1.2: Mobility &amp; Hill-Walking Ability</h3>
         <fieldset class="answer-question">
           <legend>Your ability to walk on steep or long hill paths:</legend>
           <span class="field-helper">Choose the option that best describes <strong>you personally</strong> when walking to shrines such as Kedarnath or Hemkund Sahib.</span>
           <div class="pictogram-grid">
+
             <label class="picto-card">
               <input type="radio" name="trekFitness" value="No difficulty" required>
               <span class="picto-card-inner">
-                <span class="picto-card-icon">🏃</span>
+                <span class="picto-card-icon">
+                  <!-- Upright figure striding uphill confidently -->
+                  <svg viewBox="0 0 48 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="7" r="6" fill="currentColor"/>
+                    <line x1="30" y1="13" x2="28" y2="33" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                    <line x1="29" y1="21" x2="18" y2="26" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="29" y1="21" x2="40" y2="16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="28" y1="33" x2="36" y2="50" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                    <line x1="28" y1="33" x2="20" y2="50" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                    <path d="M4 55 L44 43" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.3" stroke-linecap="round"/>
+                  </svg>
+                </span>
                 <span>Walks with ease</span>
               </span>
             </label>
+
             <label class="picto-card">
               <input type="radio" name="trekFitness" value="Manageable with rests">
               <span class="picto-card-inner">
-                <span class="picto-card-icon">🚶</span>
+                <span class="picto-card-icon">
+                  <!-- Slightly bent figure, pause marks -->
+                  <svg viewBox="0 0 48 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="22" cy="7" r="6" fill="currentColor"/>
+                    <line x1="22" y1="13" x2="19" y2="33" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                    <line x1="21" y1="21" x2="11" y2="27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="21" y1="21" x2="31" y2="24" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="19" y1="33" x2="25" y2="51" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                    <line x1="19" y1="33" x2="13" y2="51" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                    <rect x="36" y="5" width="4" height="14" rx="1.5" fill="currentColor" opacity="0.5"/>
+                    <rect x="42" y="5" width="4" height="14" rx="1.5" fill="currentColor" opacity="0.5"/>
+                  </svg>
+                </span>
                 <span>Walks with breaks</span>
               </span>
             </label>
+
             <label class="picto-card">
               <input type="radio" name="trekFitness" value="Difficult without assistance">
               <span class="picto-card-inner">
-                <span class="picto-card-icon">🤝</span>
+                <span class="picto-card-icon">
+                  <!-- Hunched figure + helper alongside -->
+                  <svg viewBox="0 0 64 58" fill="none" xmlns="http://www.w3.org/2000/svg" class="wide">
+                    <circle cx="14" cy="9" r="5.5" fill="currentColor"/>
+                    <line x1="14" y1="14" x2="10" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="12" y1="21" x2="4"  y2="27" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="12" y1="21" x2="24" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="10" y1="32" x2="15" y2="49" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="10" y1="32" x2="5"  y2="49" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="46" cy="7" r="5.5" fill="currentColor" opacity="0.55"/>
+                    <line x1="46" y1="12" x2="46" y2="31" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+                    <line x1="46" y1="19" x2="24" y2="20" stroke="currentColor" stroke-width="2"   stroke-linecap="round" opacity="0.55"/>
+                    <line x1="46" y1="19" x2="56" y2="25" stroke="currentColor" stroke-width="2"   stroke-linecap="round" opacity="0.55"/>
+                    <line x1="46" y1="31" x2="52" y2="49" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+                    <line x1="46" y1="31" x2="40" y2="49" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>
+                  </svg>
+                </span>
                 <span>Needs companion's help</span>
               </span>
             </label>
+
             <label class="picto-card">
               <input type="radio" name="trekFitness" value="Needs mobility assistance">
               <span class="picto-card-inner">
-                <span class="picto-card-icon">🪑</span>
+                <span class="picto-card-icon">
+                  <!-- Person in a palki/carrier box -->
+                  <svg viewBox="0 0 64 58" fill="none" xmlns="http://www.w3.org/2000/svg" class="wide">
+                    <circle cx="32" cy="9" r="5.5" fill="currentColor"/>
+                    <line x1="32" y1="14" x2="32" y2="26" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="32" y1="26" x2="40" y2="31" stroke="currentColor" stroke-width="2"   stroke-linecap="round"/>
+                    <line x1="32" y1="26" x2="24" y2="31" stroke="currentColor" stroke-width="2"   stroke-linecap="round"/>
+                    <line x1="32" y1="20" x2="24" y2="24" stroke="currentColor" stroke-width="2"   stroke-linecap="round"/>
+                    <line x1="32" y1="20" x2="40" y2="24" stroke="currentColor" stroke-width="2"   stroke-linecap="round"/>
+                    <rect x="17" y="16" width="30" height="22" rx="3" stroke="currentColor" stroke-width="2" opacity="0.45"/>
+                    <line x1="4"  y1="27" x2="60" y2="27" stroke="currentColor" stroke-width="2"   stroke-linecap="round" opacity="0.3"/>
+                    <circle cx="7"  cy="20" r="4" fill="currentColor" opacity="0.35"/>
+                    <line x1="7"  y1="24" x2="7"  y2="44" stroke="currentColor" stroke-width="2"   stroke-linecap="round" opacity="0.35"/>
+                    <circle cx="57" cy="20" r="4" fill="currentColor" opacity="0.35"/>
+                    <line x1="57" y1="24" x2="57" y2="44" stroke="currentColor" stroke-width="2"   stroke-linecap="round" opacity="0.35"/>
+                  </svg>
+                </span>
                 <span>Needs carrier or vehicle</span>
               </span>
             </label>
+
             <label class="picto-card">
               <input type="radio" name="trekFitness" value="Unable to walk the route">
               <span class="picto-card-inner">
-                <span class="picto-card-icon">🚫</span>
+                <span class="picto-card-icon">
+                  <!-- Seated figure with X through legs -->
+                  <svg viewBox="0 0 48 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="7" r="6" fill="currentColor"/>
+                    <line x1="24" y1="13" x2="24" y2="28" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+                    <line x1="24" y1="20" x2="14" y2="25" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="24" y1="20" x2="34" y2="25" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    <line x1="24" y1="28" x2="37" y2="34" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="24" y1="28" x2="11" y2="34" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="8"  y1="37" x2="40" y2="37" stroke="currentColor" stroke-width="1.5" opacity="0.25" stroke-linecap="round"/>
+                    <line x1="14" y1="44" x2="34" y2="56" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>
+                    <line x1="34" y1="44" x2="14" y2="56" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>
+                  </svg>
+                </span>
                 <span>Cannot walk the route</span>
               </span>
             </label>
+
             <label class="picto-card">
               <input type="radio" name="trekFitness" value="Prefer not to say">
               <span class="picto-card-inner">
-                <span class="picto-card-icon">❓</span>
+                <span class="picto-card-icon">
+                  <svg viewBox="0 0 48 58" xmlns="http://www.w3.org/2000/svg">
+                    <text x="24" y="48" text-anchor="middle" font-size="46" font-weight="700" fill="currentColor" opacity="0.55">?</text>
+                  </svg>
+                </span>
                 <span>Prefer not to say</span>
               </span>
             </label>
+
           </div>
         </fieldset>
 
@@ -382,31 +485,63 @@
           <legend>Health condition affecting long walks or climbs:</legend>
           <span class="field-helper">This helps us understand how transport options are chosen by pilgrims with different needs.</span>
           <div class="pictogram-grid">
+
             <label class="picto-card">
               <input type="radio" name="healthLimitation" value="No limitation" required>
               <span class="picto-card-inner">
-                <span class="picto-card-icon">💪</span>
+                <span class="picto-card-icon">
+                  <!-- 4 bars full -->
+                  <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2"  y="28" width="8" height="10" rx="2" fill="currentColor"/>
+                    <rect x="13" y="20" width="8" height="18" rx="2" fill="currentColor"/>
+                    <rect x="24" y="11" width="8" height="27" rx="2" fill="currentColor"/>
+                    <rect x="35" y="2"  width="8" height="36" rx="2" fill="currentColor"/>
+                  </svg>
+                </span>
                 <span>No limitation</span>
               </span>
             </label>
+
             <label class="picto-card">
               <input type="radio" name="healthLimitation" value="Minor">
               <span class="picto-card-inner">
-                <span class="picto-card-icon">⚡</span>
+                <span class="picto-card-icon">
+                  <!-- 3 bars full, 1 outline -->
+                  <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2"  y="28" width="8" height="10" rx="2" fill="currentColor"/>
+                    <rect x="13" y="20" width="8" height="18" rx="2" fill="currentColor"/>
+                    <rect x="24" y="11" width="8" height="27" rx="2" fill="currentColor"/>
+                    <rect x="35" y="2"  width="8" height="36" rx="2" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+                  </svg>
+                </span>
                 <span>Minor, manageable with breaks</span>
               </span>
             </label>
+
             <label class="picto-card">
               <input type="radio" name="healthLimitation" value="Significant">
               <span class="picto-card-inner">
-                <span class="picto-card-icon">🏥</span>
+                <span class="picto-card-icon">
+                  <!-- 2 bars full, 2 outline -->
+                  <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2"  y="28" width="8" height="10" rx="2" fill="currentColor"/>
+                    <rect x="13" y="20" width="8" height="18" rx="2" fill="currentColor"/>
+                    <rect x="24" y="11" width="8" height="27" rx="2" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+                    <rect x="35" y="2"  width="8" height="36" rx="2" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+                  </svg>
+                </span>
                 <span>Significant, needs non-trekking option</span>
               </span>
             </label>
+
             <label class="picto-card">
               <input type="radio" name="healthLimitation" value="Prefer not to say">
               <span class="picto-card-inner">
-                <span class="picto-card-icon">❓</span>
+                <span class="picto-card-icon">
+                  <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
+                    <text x="23" y="36" text-anchor="middle" font-size="36" font-weight="700" fill="currentColor" opacity="0.55">?</text>
+                  </svg>
+                </span>
                 <span>Prefer not to say</span>
               </span>
             </label>

@@ -468,6 +468,18 @@
 .picto-card-icon {
     font-size: 2rem;
     line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.picto-card-icon svg {
+    width: 2.6rem;
+    height: 2.6rem;
+    display: block;
+}
+.picto-card-icon svg.wide {
+    width: 3.4rem;
+    height: 2.6rem;
 }
 .picto-card:hover .picto-card-inner {
     background: var(--soft-green);
@@ -1158,6 +1170,10 @@ tbody tr:nth-child(even) td {
     background: #fbfcfb;
 }
 
+.grid-table {
+    width: 100%;
+}
+
 .grid-table td:first-child,
 .likert-scale td:first-child,
 .satisfaction-table td:first-child {
@@ -1172,46 +1188,6 @@ tbody tr:nth-child(even) td {
     display: inline-block;
 }
 
-.quick-rating-controls {
-    display: inline-flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 7px;
-    margin: 8px 0 4px;
-    padding: 8px 10px;
-    background: var(--soft-green);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-}
-
-.quick-rating-controls span {
-    color: var(--muted);
-    font-weight: 700;
-}
-
-.quick-rating-controls button {
-    min-width: 34px;
-    min-height: 32px;
-    margin: 0;
-    padding: 6px 10px;
-    color: var(--brand-dark);
-    background: #fff;
-    border: 1px solid #b8ced9;
-    border-radius: 6px;
-}
-
-.quick-rating-controls button:hover {
-    color: #fff;
-    background: var(--brand);
-    border-color: var(--brand);
-}
-
-.quick-rating-controls button[aria-pressed="true"] {
-    color: #fff;
-    background: var(--brand-dark);
-    border-color: var(--brand-dark);
-    font-weight: 700;
-}
 
 /* ── Satisfaction slider ──────────────────────────────────── */
 #satisfactionSlider {
