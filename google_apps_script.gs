@@ -148,12 +148,12 @@ function orderedRawKeys(params) {
     'surveyStartTimestamp','surveySubmitTimestamp','surveyCompletionSeconds','fatigueMetrics','choiceBlock',
     'age','gender','originStateUT','originCityDistrict','occupation','income','education',
     'tripStatus','travelType','groupSize','groupAdults','groupChildren','groupElderly','groupAssistanceCount',
-    'transportInfoSource','transportBookingMethod','transportDecisionMaker','yatraRegistration','transportBudget','trekFitness','healthLimitation',
+    'transportInfoSource','transportBookingMethod','transportDecisionMaker','yatraRegistration','transportBudget',
     'yamunotri','gangotri','kedarnath','badrinath','hemkund','dhamCurrentVisit','repeatVisitReason','priorModeExp',
     'startPoint','otherStartPoint','totalDurationDays','onwardVehicleContinuity','returnJourneyType','returnVehicleContinuity',
     'kedarnathAccessType','kedarnathHelicopterBoardingPoint','kedarnathHelicopterTime','kedarnathHelicopterCost','kedarnathHelicopterWaitingTime',
     'railwayAwareness','hillTrainExperience','railwaySentiment','ropewayAwareness',
-    'overallSatisfaction','intentToReturn','helicopterReducedCostIntent','integratedUse','integratedNoReason',
+    'overallSatisfaction','intentToReturn','integratedUse','integratedNoReason',
     'overallTripRating','challenge','feedbackChallenge','feedbackOther'
   ];
   var patterns = [
@@ -195,15 +195,14 @@ function writeRespondent(params, responseId, submittedAt) {
     'responseId','submittedAt','surveyStartTimestamp','surveySubmitTimestamp','surveyCompletionSeconds','fatigueMetrics','choiceBlock',
     'age','gender','originStateUT','originCityDistrict','occupation','income','education',
     'tripStatus','travelType','groupSize','groupAdults','groupChildren','groupElderly','groupAssistanceCount',
-    'transportInfoSource','transportBookingMethod','transportDecisionMaker','yatraRegistration','transportBudget','trekFitness','healthLimitation',
+    'transportInfoSource','transportBookingMethod','transportDecisionMaker','yatraRegistration','transportBudget',
     'startPoint','otherStartPoint','totalDurationDays','onwardVehicleContinuity','returnJourneyType','returnVehicleContinuity',
     'priorModeExp','railwayAwareness','hillTrainExperience','railwaySentiment','ropewayAwareness',
     'priorityTime','priorityCost','prioritySafety','priorityComfort','priorityReliability','priorityConvenience','priorityAccessibility',
-    'attitudeRoadEnvironment','attitudeNatureConvenience','relPhysicalEffort','relVow','normTrekExpected',
-    'habitFamiliarMode','ropewayCostPreference','ropewaySpiritual','ropewaySafety','ropewaySubsidy',
-    'wtpRopewayKedarnath','ropewayDriver','helicopterReducedCostIntent','integratedUse','integratedPayment','guaranteedSeatWtp','integratedNoReason',
-    'integratedTime','integratedCost','integratedComfort','integratedReliability','integratedSafety','railStress','railCostConcern','railFlexibility',
-    'railAccessibility','railCongestion','envLowEmission','envRestrict','envCess','maxAcceptableWait','overallSatisfaction','intentToReturn',
+    'ropewayCostPreference','ropewaySpiritual','ropewaySafety','ropewaySubsidy',
+    'wtpRopewayKedarnath','ropewayDriver','integratedUse','integratedPayment','guaranteedSeatWtp','integratedNoReason',
+    'integratedTime','integratedCost','integratedComfort','integratedReliability','integratedSafety','railMaxFare','railStress','railCostConcern','railFlexibility',
+    'railAccessibility','railCongestion','maxAcceptableWait','overallSatisfaction','intentToReturn',
     'insuranceMedicalAwareness','overallTripRating','challenge','feedbackChallenge','feedbackSuggestions','feedbackOther'
   ];
   var row = { responseId: responseId, submittedAt: submittedAt };

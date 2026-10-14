@@ -2401,7 +2401,6 @@ function deleteLastMileRow(dhamSlug) {
     if (row) row.remove();
 
     if (dhamSlug === 'Kedarnath') {
-        updateHelicopterFareQuestionVisibility(false);
         const accessChoice = document.getElementById('kedarnathAccessChoice');
         if (accessChoice) accessChoice.style.display = 'none';
         document.querySelectorAll('input[name="kedarnathAccessType"]').forEach(input => {
@@ -2485,7 +2484,6 @@ function updateLastMileTable() {
     const helicopterDhams = getMainHaulHelicopterDhams();
     const lastMileDhams = visitedDhams;
     const showKedarnathApproach = lastMileDhams.includes('Kedarnath') && !helicopterDhams.has('Kedarnath');
-    updateHelicopterFareQuestionVisibility(showKedarnathApproach);
     const accessChoice = document.getElementById('kedarnathAccessChoice');
     if (accessChoice) accessChoice.style.display = showKedarnathApproach ? 'block' : 'none';
     document.querySelectorAll('input[name="kedarnathAccessType"]').forEach(input => {
@@ -2807,17 +2805,19 @@ function updateModeBlockVisibility(mode) {
             if (!showReason) otherText.value = '';
         }
     }
+
+    // Show/hide D2c cost threshold block (rail only, yes + maybe)
+    const maybeBlock = document.getElementById(`${mode}MaybeBlock`);
+    if (maybeBlock) {
+        const showMaybe = gate === 'yes' || gate === 'maybe';
+        maybeBlock.style.display = showMaybe ? '' : 'none';
+        maybeBlock.querySelectorAll('select').forEach(sel => {
+            sel.disabled = !showMaybe;
+            if (!showMaybe) sel.value = '';
+        });
+    }
 }
 
-function updateHelicopterFareQuestionVisibility(show) {
-    const question = document.getElementById('helicopterFareQuestion');
-    const select = question?.querySelector('select[name="helicopterReducedCostIntent"]');
-    if (!question || !select) return;
-    question.style.display = show ? 'block' : 'none';
-    select.required = show;
-    select.disabled = !show;
-    if (!show) select.value = '';
-}
 
 function updateKedarnathAccessUI() {
     const accessType = document.querySelector('input[name="kedarnathAccessType"]:checked')?.value || '';
@@ -3001,9 +3001,7 @@ function updateKedarnathApproachDetails() {
     if (timeInput) { timeInput.required = showTimeExact; timeInput.disabled = !showTimeExact; if (!showTimeExact) timeInput.value = ''; }
 
     const costLabel = document.getElementById('kedarnathApproachCostLabel');
-    const costInput = panel.querySelector('input[name="lastMileApproachCost_Kedarnath"]');
     if (costLabel) costLabel.style.display = isShuttle ? '' : 'none';
-    if (costInput) { costInput.required = isShuttle; costInput.disabled = !isShuttle; if (!isShuttle) costInput.value = ''; }
 
     const waitingLabel = document.getElementById('kedarnathApproachWaitingLabel');
     const range = panel.querySelector('select[name="lastMileApproachWaitingRange_Kedarnath"]');
@@ -4112,7 +4110,7 @@ function getLocalRawColumnGroups(responsesToExport) {
     const groups = [
         { section: 'Submission', fields: ['responseId', 'surveyStartTimestamp', 'surveySubmitTimestamp', 'surveyCompletionSeconds', 'choiceBlock', 'deviceId', 'deviceFingerprint', 'geoLat', 'geoLng', 'geoAccuracy', 'geoTimestamp', 'geoStatus', 'fatigueMetrics'] },
         { section: 'Respondent Profile', fields: ['age', 'gender', 'originStateUT', 'originCityDistrict', 'occupation', 'income', 'education'] },
-        { section: 'Travel Group', fields: ['tripStatus', 'travelType', 'groupSize', 'groupAdults', 'groupChildren', 'groupElderly', 'groupAssistanceCount', 'trekFitness', 'healthLimitation'] },
+        { section: 'Travel Group', fields: ['tripStatus', 'travelType', 'groupSize', 'groupAdults', 'groupChildren', 'groupElderly', 'groupAssistanceCount'] },
         { section: 'Planning And Budget', fields: ['transportDecisionMaker', 'yatraRegistration', 'transportBudgetBasis', 'transportBudget', 'transportBudgetGroup'] },
         { section: 'Visit History And Itinerary', fields: ['kedarnath', 'badrinath', 'gangotri', 'yamunotri', 'hemkund', 'dhamCurrentVisit', ...matching(/^ongoingDhamStatus_/), 'repeatVisitReason', 'priorModeExp', 'startPoint', 'otherStartPoint', 'totalDurationDays', ...matching(/^dhamSequence_\d+$/)] },
         { section: 'Main-Haul Transfers', fields: ['onwardVehicleContinuity', 'mainHaulTransferCount_Kedarnath', 'mainHaulTransferCount_Badrinath', 'mainHaulTransferCount_Gangotri', 'mainHaulTransferCount_Yamunotri', 'mainHaulTransferCount_HemkundSahib', ...matching(/^mainHaulTransfer(Location|Mode|Time|TimeRange|Cost|CostRange|FareBasis|Occupancy)_/)] },
@@ -4122,9 +4120,9 @@ function getLocalRawColumnGroups(responsesToExport) {
         { section: 'Last-Mile Travel', fields: ['kedarnathAccessType', 'kedarnathHelicopterBoardingPoint', 'kedarnathHelicopterTime', 'kedarnathHelicopterCost', 'kedarnathHelicopterWaitingTime', ...allKeys.filter(key => /^(lastMileApproachDestination|lastMileApproachMountainMode|lastMileApproachMountainTimeBand|lastMileApproachMountainTime|lastMileApproachMountainCostBand|lastMileApproachMountainCost|lastMileApproachStop|lastMileApproachMode|lastMileApproachTimeBand|lastMileApproachTime|lastMileApproachCost|lastMileRoute|lastMileMode|lastMileTimeBand|lastMileTime|lastMileCostBand|lastMileCost|lastMileReturnType|lastMileReturnRoute|lastMileReturnHelipad|lastMileReturnLegRoute|lastMileReturnMode|lastMileReturnTimeBand|lastMileReturnTime|lastMileReturnCostBand|lastMileReturnCost)_/.test(key)).sort(naturalLocalSort)] },
         { section: 'Stay And Accommodation', fields: allKeys.filter(key => /^(stayLocation|stayDuration|stayAccom|stayAccomCost|stayAccomCostRange|stayAccomCostBasis)_/.test(key)).sort(naturalLocalSort) },
         { section: 'Service Evaluation', fields: allKeys.filter(key => /^(eval|lastMileEval)/.test(key)).sort(naturalLocalSort) },
-        { section: 'Main-Haul Choice Experiment', fields: ['railwayAwareness', 'hillTrainExperience', 'railwaySentiment', 'railGate', 'railNoReason', 'railNoReasonOtherText', 'railStress', 'railCostConcern', 'railFlexibility', 'railAccessibility', 'railCongestion', ...matching(/^main_haul_[A-Za-z]+_Task\d+$/)] },
+        { section: 'Main-Haul Choice Experiment', fields: ['railwayAwareness', 'hillTrainExperience', 'railwaySentiment', 'railGate', 'railNoReason', 'railNoReasonOtherText', 'railMaxFare', 'railStress', 'railCostConcern', 'railFlexibility', 'railAccessibility', 'railCongestion', ...matching(/^main_haul_[A-Za-z]+_Task\d+$/)] },
         { section: 'Last-Mile Choice Experiment', fields: ['ropewayAwareness', 'ropewayGate', 'ropewayNoReason', 'ropewayNoReasonOtherText', 'ropewayCostPreference', 'ropewaySpiritual', 'ropewaySafety', 'ropewaySubsidy', 'wtpRopewayShrine', 'wtpRopewayKedarnath', 'ropewayDriver', ...matching(/^last_mile_[A-Za-z]+_Task\d+$/)] },
-        { section: 'Integrated Services', fields: ['integratedUse', 'integratedPayment', 'guaranteedSeatWtp', 'helicopterReducedCostIntent', 'integratedNoReason', 'integratedTime', 'integratedCost', 'integratedComfort', 'integratedReliability', 'integratedSafety'] },
+        { section: 'Integrated Services', fields: ['integratedUse', 'integratedPayment', 'guaranteedSeatWtp', 'integratedNoReason', 'integratedTime', 'integratedCost', 'integratedComfort', 'integratedReliability', 'integratedSafety'] },
         { section: 'Priorities And Attitudes', fields: allKeys.filter(key => /^(priority|attitude)|maxAcceptableWait/.test(key)).sort(naturalLocalSort) },
         { section: 'Feedback', fields: ['insuranceMedicalAwareness', 'challenge', 'feedbackChallenge', 'feedbackSuggestions', 'feedbackOther'] },
         { section: 'Lucky Draw', fields: ['luckyDrawUpi'] }
@@ -4157,7 +4155,7 @@ function mainHaulLocalSuffixSort(a, b) {
 }
 
 function buildLocalRespondents(responsesToExport) {
-    const headers = ['responseId', 'surveyStartTimestamp', 'surveySubmitTimestamp', 'surveyCompletionSeconds', 'deviceId', 'geoLat', 'geoLng', 'geoAccuracy', 'geoStatus', 'age', 'gender', 'originStateUT', 'originCityDistrict', 'occupation', 'income', 'education', 'tripStatus', 'travelType', 'groupSize', 'groupAdults', 'groupChildren', 'groupElderly', 'groupAssistanceCount', 'transportInfoSource', 'transportBookingMethod', 'transportDecisionMaker', 'yatraRegistration', 'transportBudget', 'trekFitness', 'healthLimitation', 'startPoint', 'otherStartPoint', 'totalDurationDays', 'dhamCurrentVisit', 'repeatVisitReason', 'priorModeExp', 'railwayAwareness', 'hillTrainExperience', 'railGate', 'railNoReason', 'railNoReasonOtherText', 'ropewayAwareness', 'ropewayGate', 'ropewayNoReason', 'ropewayNoReasonOtherText', 'integratedUse', 'integratedPayment', 'guaranteedSeatWtp', 'helicopterReducedCostIntent', 'integratedNoReason', 'insuranceMedicalAwareness', 'challenge', 'feedbackChallenge', 'feedbackSuggestions', 'feedbackOther'];
+    const headers = ['responseId', 'surveyStartTimestamp', 'surveySubmitTimestamp', 'surveyCompletionSeconds', 'deviceId', 'geoLat', 'geoLng', 'geoAccuracy', 'geoStatus', 'age', 'gender', 'originStateUT', 'originCityDistrict', 'occupation', 'income', 'education', 'tripStatus', 'travelType', 'groupSize', 'groupAdults', 'groupChildren', 'groupElderly', 'groupAssistanceCount', 'transportInfoSource', 'transportBookingMethod', 'transportDecisionMaker', 'yatraRegistration', 'transportBudget', 'startPoint', 'otherStartPoint', 'totalDurationDays', 'dhamCurrentVisit', 'repeatVisitReason', 'priorModeExp', 'railwayAwareness', 'hillTrainExperience', 'railGate', 'railNoReason', 'railNoReasonOtherText', 'ropewayAwareness', 'ropewayGate', 'ropewayNoReason', 'ropewayNoReasonOtherText', 'integratedUse', 'integratedPayment', 'guaranteedSeatWtp', 'helicopterReducedCostIntent', 'integratedNoReason', 'insuranceMedicalAwareness', 'challenge', 'feedbackChallenge', 'feedbackSuggestions', 'feedbackOther'];
     return responsesToExport.map((response, index) => Object.fromEntries(headers.map(header => [
         header,
         header === 'responseId' ? getLocalResponseId(response, index) : getLocalField(response, header)
